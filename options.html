@@ -2,6 +2,193 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <style>
+      /* Light mode styles (default) */
+      :root {
+        --bg-primary: #ffffff;
+        --bg-secondary: #f5f5f5;
+        --text-primary: #333333;
+        --text-secondary: #666666;
+        --border-color: #e0e0e0;
+        --button-bg: #0070f3;
+        --button-hover: #0051cc;
+        --button-text: #ffffff;
+        --success-color: #4caf50;
+      }
+
+      /* Dark mode styles */
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg-primary: #1a1a1a;
+          --bg-secondary: #2d2d2d;
+          --text-primary: #e0e0e0;
+          --text-secondary: #b0b0b0;
+          --border-color: #404040;
+          --button-bg: #4a4a4a;
+          --button-hover: #5a5a5a;
+          --button-text: #e0e0e0;
+          --success-color: #4caf50;
+        }
+      }
+
+      body {
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+        padding: 20px;
+        transition:
+          background-color 0.3s,
+          color 0.3s;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        max-width: 600px;
+      }
+
+      label {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      input[type="text"],
+      input[type="number"],
+      textarea {
+        background-color: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        color: var(--text-primary);
+        padding: 8px;
+        font-size: 14px;
+      }
+
+      input[readonly] {
+        background-color: var(--bg-secondary);
+        border: none;
+        color: var(--text-secondary);
+      }
+
+      textarea {
+        resize: vertical;
+      }
+
+      button {
+        background-color: var(--button-bg);
+        border: none;
+        border-radius: 4px;
+        color: var(--button-text);
+        cursor: pointer;
+        padding: 8px 16px;
+        font-size: 14px;
+        width: fit-content;
+        margin-top: 8px;
+        transition: background-color 0.2s;
+      }
+
+      button:hover {
+        background-color: var(--button-hover);
+      }
+
+      ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 8px 0;
+      }
+
+      li {
+        margin: 8px 0;
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+
+      code {
+        background-color: var(--bg-secondary);
+        padding: 2px 4px;
+        border-radius: 4px;
+      }
+
+      #savedSettings {
+        margin-top: 16px;
+        color: var(--success-color);
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        max-width: 600px;
+      }
+
+      label {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      input[type="text"],
+      input[type="number"],
+      textarea {
+        background-color: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        color: var(--text-primary);
+        padding: 8px;
+        font-size: 14px;
+      }
+
+      input[readonly] {
+        background-color: var(--bg-secondary);
+        border: none;
+        color: var(--text-secondary);
+      }
+
+      textarea {
+        resize: vertical;
+      }
+
+      button {
+        background-color: var(--button-bg);
+        border: none;
+        border-radius: 4px;
+        color: var(--button-text);
+        cursor: pointer;
+        padding: 8px 16px;
+        font-size: 14px;
+        width: fit-content;
+        margin-top: 8px;
+        transition: background-color 0.2s;
+      }
+
+      button:hover {
+        background-color: var(--button-hover);
+      }
+
+      ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 8px 0;
+      }
+
+      li {
+        margin: 8px 0;
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+
+      code {
+        background-color: var(--bg-secondary);
+        padding: 2px 4px;
+        border-radius: 4px;
+      }
+
+      #savedSettings {
+        margin-top: 16px;
+        color: var(--success-color);
+      }
+    </style>
   </head>
   <body>
     <form style="display: flex; flex-direction: column">
@@ -16,19 +203,19 @@
       <label>
         Text color (hex)
         <input
-        required
-        pattern="^#(([0-9a-fA-F]{2}){3}|([0-9a-fA-F]){3})$"
-        type="text"
-        id="textColor"
+          required
+          pattern="^#(([0-9a-fA-F]{2}){3}|([0-9a-fA-F]){3})$"
+          type="text"
+          id="textColor"
         />
       </label>
       <label>
         Background color (hex)
         <input
-        required
-        pattern="^#(([0-9a-fA-F]{2}){3}|([0-9a-fA-F]){3})$"
-        type="text"
-        id="color"
+          required
+          pattern="^#(([0-9a-fA-F]{2}){3}|([0-9a-fA-F]){3})$"
+          type="text"
+          id="color"
         />
       </label>
       <label>
@@ -40,18 +227,17 @@
         <input required type="number" min="0" id="time" step="0.01" />
       </label>
       <label>
-        Variance in delay time. Adds at most +-variance ly. to delay
-        time
+        Variance in delay time. Adds at most +-variance ly. to delay time
         <input type="number" min="0" id="variance" step="0.01" />
       </label>
       <label style="margin-top: 20px" ;>
-        Webpages to run on, use same format as default block list for
-        best results:
+        Webpages to run on, use same format as default block list for best
+        results:
         <textarea rows="10" cols="33" id="runOn"> </textarea>
         <br />
         This uses
-        <code>RexExp(pattern).test(document.URL)</code> internally. So
-        the following example patterns work quite neatly:
+        <code>RexExp(pattern).test(document.URL)</code> internally. So the
+        following example patterns work quite neatly:
         <br />
         <ul>
           <li>
@@ -59,14 +245,13 @@
             delay all webpages with "youtube" in the url
           </li>
           <li>
-            <input readonly style="border: none" value=".*" /> delay
-            all pages
+            <input readonly style="border: none" value=".*" /> delay all pages
           </li>
           <li>
             <input
-            readonly
-            style="border: none"
-            value="^((?!\google.com).)*$"
+              readonly
+              style="border: none"
+              value="^((?!\google.com).)*$"
             />
             delay all pages without "google.com" in the name
           </li>

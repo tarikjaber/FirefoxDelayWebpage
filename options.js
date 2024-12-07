@@ -36,9 +36,9 @@ function restoreOptions() {
     Object.keys(defaults).forEach((key) => {
       const el = document.querySelector(`#${key}`);
       if (el.type === "checkbox") {
-        el.checked = vOrDefault(settings[key], defaults[key]);
+        el.checked = settings[key] ?? defaults[key];
       } else {
-        el.value = vOrDefault(settings[key], defaults[key]);
+        el.value = settings[key] ?? defaults[key];
       }
     });
   }
@@ -52,13 +52,3 @@ function restoreOptions() {
 
 document.addEventListener("DOMContentLoaded", restoreOptions);
 document.querySelector("form").addEventListener("submit", saveOptions);
-
-function vOrDefault(v, def) {
-  if (v) {
-    return v;
-  } else if (v === "" || v === {} || v === 0) {
-    return v;
-  } else {
-    return def;
-  }
-}

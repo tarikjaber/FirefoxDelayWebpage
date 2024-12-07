@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
-  "name": "DelayWebpage",
-  "version": "2.0",
-  "description": "Sets a delay to distracting websites to help you browse more mindfully",
+  "name": "Delay Page",
+  "version": "1.0",
+  "description": "Delays distracting websites to help you browse more mindfully",
   "icons": {
     "512": "icon.png"
   },
@@ -13,13 +13,16 @@
       "run_at": "document_start"
     }
   ],
+  "browser_action": {
+    "default_popup": "options.html"
+  },
   "options_ui": {
     "page": "options.html"
   },
   "permissions": ["storage"],
-  "applications": {
+  "browser_specific_settings": {
     "gecko": {
-      "id": "59d38c48-5403-4f6e-9e18-3873edf0dbdb"
+      "id": "{b3b8379a-4d33-4333-b5f5-722c0df908e9}"
     }
   }
 }
