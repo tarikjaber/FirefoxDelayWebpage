@@ -10,7 +10,6 @@ facebook\.com
 news\.ycombinator\.com
 youtube\.com`,
   delayLinks: false,
-  variance: 0,
 };
 
 function saveOptions(e) {
@@ -24,10 +23,8 @@ function saveOptions(e) {
       fontSize: document.querySelector("#fontSize").value,
       runOn: document.querySelector("#runOn").value,
       delayLinks: document.querySelector("#delayLinks").checked,
-      variance: document.querySelector("#variance").value,
     },
   });
-  document.getElementById("savedSettings").style = "color:green;";
 }
 
 function restoreOptions() {

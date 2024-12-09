@@ -10,7 +10,6 @@ const defaults = {
     news\.ycombinator\.com
     youtube\.com`,
     delayLinks: false,
-    variance: 0,
 };
 
 browser.storage.sync.get("settings").then(onGot, writeError);
@@ -26,11 +25,6 @@ function onGot(item) {
     const fontSize = settings.fontSize ?? defaults.fontSize;
     const runOn = settings.runOn ?? defaults.runOn;
     const delayLinks = settings.delayLinks ?? defaults.delayLinks;
-    const variance = settings.variance ?? defaults.variance;
-
-    const sign = Math.random() < 0.5 ? 1 : -1;
-    const actualVariance = Math.random() * variance * sign;
-    const blockTime = Math.max(0, 1000 * (time + actualVariance));
 
     const urlMatchesSettings = (url) =>
         runOn
@@ -52,7 +46,7 @@ function onGot(item) {
                     false
                 );
             }
-        }, blockTime);
+        }, time);
     }
 
     function handleVisibilityChange() {
@@ -82,7 +76,7 @@ function onGot(item) {
         document.createTextNode(
             text === "default text"
             ? `Wait ${
-                Math.round(blockTime / 100) / 10
+                Math.round(time / 100) / 10
             } seconds for the page to load`
             : text
         )
@@ -98,7 +92,7 @@ function onGot(item) {
             document.documentElement.appendChild(blocking_div);
             setTimeout(() => {
                 document.getElementById("__dly_id__").remove();
-            }, blockTime);
+            }, time);
 
             // pause video to prevent audio in background
             const v = document.querySelector("video");
@@ -129,7 +123,7 @@ function onGot(item) {
                         document.documentElement.appendChild(blocking_div);
                         setTimeout(() => {
                             document.getElementById("__dly_id__").remove();
-                        }, blockTime);
+                        }, time);
                     }
                 }
             }, 300),
